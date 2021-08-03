@@ -1,0 +1,17 @@
+<?php
+function dbConnect (){
+    $servidor = "127.0.0.1"; 
+    $base = "tip2do"; 
+    $usuario = "root"; 
+    $contrasenha = "toor"; // Cambialo por tu contraseña
+    try {
+        $db = new PDO('mysql:host='.$servidor.';dbname='.$base.';charset=utf8', $usuario,$contrasenha);
+    }
+    catch (PDOException $e) {
+        echo '<p>Error conexion !!</p>';
+        echo $e->getMessage();
+        exit;
+    }
+    return $db;
+ }
+?>
