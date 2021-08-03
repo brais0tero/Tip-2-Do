@@ -32,11 +32,10 @@
             if(password_verify($clave, $datos["contraseña"])){ 
 
                 session_start();  
-
                 $_SESSION['usuario']=$_POST['nombre'];
-                $_SESSION['clave']=explode("\n",explode("|",buscarUsuario($_POST['nombre'])[1])[1])[0];
-                header("Location: ./Index.php");
-                
+                $_SESSION['clave']= $datos["contraseña"];
+                header("Location: ../Index.php");
+
             }
             // var_dump();
             // echo $datos["contraseña"];
