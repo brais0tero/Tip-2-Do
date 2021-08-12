@@ -1,3 +1,7 @@
+<!-- Pagina de registro -->
+
+<!-- Mejorar CSS -->
+
 <!doctype html>
 <html lang="es">
   <head>

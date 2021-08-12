@@ -1,3 +1,6 @@
+<!-- Main Page de pelicula -->
+
+
 <?php
 include "./backend/conexionBD.php";
 $db = dbConnect();

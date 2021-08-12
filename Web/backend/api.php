@@ -1,24 +1,33 @@
 <?php
     include "./funciones.php";
     include './conexionBD.php';
+
+    // Inicio de sesion de usuario
     if (isset($_POST['login']))
     {      
-       verificarClave($_POST["correo"],$_POST['clave']);
+       inicioSesion($_POST["correo"],$_POST['clave']);
     }
+
+    // Registrar usuario
     if (isset($_POST['registro']))
     {    
-        var_dump(password_hash($_POST["clave"], PASSWORD_DEFAULT));
+        $passHas = password_hash($_POST["clave"], PASSWORD_DEFAULT);
 
 
-        // insertarUsuario($_POST["nombre"],$_POST["correo"],password_hash($_POST["clave"], PASSWORD_DEFAULT) );
+        insertarUsuario($_POST["nombre"],$_POST["correo"],  $passHas );
 
     }
+
+    // Al cargar la pagina web
     if(isset($_POST['contenido']))
     {
         echo pedirMultimedia();
     }
+
+    // Genereado del fomulario de busqueda
     if(isset($_POST['busqueda']))
     {
+    
        $buscado = $_POST['busqueda'];
         $datos = array();
         $datos = array_merge(buscarMiembro($buscado), buscarMultimedia($buscado));

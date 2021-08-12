@@ -1,5 +1,9 @@
+<!-- Hoja de funciones PHP con conexion PDO -->
+
+
 <?php
 
+    // Creacion de usuario
     function insertarUsuario($nombre, $correo, $claveHash)
     {
         try{
@@ -18,7 +22,8 @@
         } 
     }
 
-     function verificarClave($correo, $clave)
+    // funcion para inicar sesion
+     function inicioSesion($correo, $clave)
     {
         try
         {
@@ -47,6 +52,7 @@
         } 
     }
 
+    // Peticion de datos a la base de datos
     function pedirMultimedia()
     {
         try
@@ -65,6 +71,7 @@
         } 
     }
 
+    // Busqueda de datos
     function buscarMultimedia($buscado)
     {
         try
@@ -84,6 +91,7 @@
         } 
     }
 
+    // Busqueda de Cast *Futura mejora de unificar la busqueda
     function buscarMiembro($buscado){
         $db = dbConnect();
             $query = "SELECT CONCAT('./miembro','.php?ID=', participante.id) as URL, participante.id as particip4nte, participante.nombre as nombre, participante.imagen as IMG, (SELECT puesto

@@ -1,3 +1,7 @@
+<!-- 
+Main page de serie
+ -->
+
 <?php
 include "./backend/conexionBD.php";
 $db = dbConnect();

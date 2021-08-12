@@ -1,3 +1,4 @@
+<!-- Registro de la pagina Web -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
