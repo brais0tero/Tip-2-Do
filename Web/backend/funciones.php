@@ -35,12 +35,8 @@
             
 
             if(password_verify($clave, $datos["contraseña"])){ 
-
-                session_start();  
-                $_SESSION['usuario']=$_POST['nombre'];
-                $_SESSION['clave']= $datos["contraseña"];
-                header("Location: ../Index.php");
-
+                return true;
+            
             }
             // var_dump();
             // echo $datos["contraseña"];

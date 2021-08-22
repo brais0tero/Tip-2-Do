@@ -1,3 +1,10 @@
+     <?php
+     if(isset($_COOKIE['PHPSESSID']))
+     {
+        session_start();
+     }  
+     ?>
+     
      <div class="d-flex flex-column text-white bg-dark justify-content-between" style="width: 4.5rem;">
             <a href="./index.php" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip"
                 data-bs-placement="right" data-bs-original-title="Icon-only">
@@ -51,19 +58,25 @@
                 </ul>
             </div>
             
-                <div class="dropdown border-top">
+                <div class="border-top text-white">
+                    <?php 
+                    if ($usuario!=null){
+                    
+                    ?>
                     <a href="#"
-                        class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
-                        id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+                        class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none">
                         <img src="" alt="mdo" width="24" height="24" class="rounded-circle">
                     </a>
-                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Salir</a></li>
-                    </ul>
+                    <?php
+                    }
+                    else{
+                    ?>
+
+                    <a class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none nav-link  text-white"
+                    href="./login.php"> Login 
+                    </a>
+                    <?php
+                    }
+                    ?>
                 </div>
         </div>

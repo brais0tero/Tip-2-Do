@@ -5,7 +5,14 @@
     // Inicio de sesion de usuario
     if (isset($_POST['login']))
     {      
-       inicioSesion($_POST["correo"],$_POST['clave']);
+      if(inicioSesion($_POST["correo"],$_POST['clave']))
+        {
+            session_start();  
+        }
+        else
+        {
+            
+        }
     }
 
     // Registrar usuario

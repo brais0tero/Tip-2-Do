@@ -1,14 +1,27 @@
-<!-- Usar esta linea SQL para obtener informacion de tablas y auto generar el formulario
-SELECT table_name, COLUMN_NAME, DATA_TYPE FROM information_schema.COLUMNS WHERE table_schema = "tip2do" -->
-
-<!-- Podria crear una manera de generar proceduralmente los botones para gestionar (No harcode) -->
-
 <?php 
-    if (! isset($_SESSION))
+    if (! isset($_COOKIE['PHPSESSID']))
     {
 
     }
 ?>
+<!-- AGREGAR SISTEMA DE DESTACOS -->
+
+<!-- BOTONES DE SELECCION DE DATOS EN FUNCION DEL QUE SE QUIERA MOSTRAR EN PORTADA -->
+
+<!-- Usar esta linea SQL para obtener informacion de tablas y auto generar el formulario
+
+SSELECT table_name as Tabla, COLUMN_NAME as Datos, DATA_TYPE as Tipo FROM information_schema.COLUMNS WHERE table_schema = "tip2do" -->
+
+<!-- Auto generar botones  para interactuar
+    SELECT table_name AS `Tabla`
+  FROM information_schema.TABLES 
+  WHERE table_schema = "tip2do"
+
+-->
+
+<!-- Podria crear una manera de generar proceduralmente los botones para gestionar (No harcode) -->
+
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -20,10 +33,18 @@ SELECT table_name, COLUMN_NAME, DATA_TYPE FROM information_schema.COLUMNS WHERE 
 </head>
 <body>
     <section>
-        <!-- Agregar Api -->
+        <h2>Gestion Pagina Principal</h2>
+        <div id="gesstion">
 
+        </div>
+    </section>
+    <section>
+        <!-- Agregar Api -->     
         <!-- Funciones de Api con INSET INTO (Nombre de table seleccionado) -->
-        <h2>Crear</h2>
+        <h2>Agregar datos</h2>
+        <div id="crear">
+
+        </div>
 
     </section>
     
@@ -32,18 +53,29 @@ SELECT table_name, COLUMN_NAME, DATA_TYPE FROM information_schema.COLUMNS WHERE 
 
         <!-- Agregar un sistema de busqueda -->
         <h2>Modificar</h2>
+        <div id="Modificar">
+
+        </div>
     </section>
 
     <section>
         <!-- Funcion Api Delete From -->
-        <h2>Borrar</h2>
+        <h2>Eliminar</h2>
+        <div id="Eliminar"> 
+
+        </div>
     </section>
 
 
     <section>
         <!--  Agregar boton con ajax donde marque cantidad de quejas en rojo para poder revisar -->
         <h2>Avisos</h2>
+        <div id="Avisos" >
+
+        </div>
     </section>
 
 </body>
 </html>
+
+<!-- Crear un sistema de decteccion de tipo de datos de SQL y transformar en tipos de entradas de texto -->

@@ -5,21 +5,27 @@ import "./funciones.js"
 $(document).ready(function () {
     var contenido = null;
     let respuesta = null;
-    $('#nav').load("./componentes/navbar.html");
+    $('#nav').load("./componentes/navbar.php");
    
     $.get('./componentes/contenido.html')
         .done(template => {
             //Separar en funcion de la pagina
-            $.post("./backend/api.php", {
-                "busqueda": ""
-            }).done(datos => {
-                respuesta = JSON.parse(datos)
-               
-                    for (let i = 0; i < respuesta.length; i++) {
-                        $.tmpl(template, respuesta[i]).appendTo("#resultados");
-                    }
-               
-            });
+
+            if($("#resultado").length){
+                $.post("./backend/api.php", {
+                    "busqueda": ""
+                }).done(datos => {
+                    console.log(datos)
+                    console.log(JSON.parse(datos))
+                    respuesta = JSON.parse(datos)
+                   
+                        for (let i = 0; i < respuesta.length; i++) {
+                            $.tmpl(template, respuesta[i]).appendTo("#resultados");
+                        }
+                   
+                });
+            }
+          
 
             $("#busqueda").keyup(function () {
                 $("#resultados").empty();
