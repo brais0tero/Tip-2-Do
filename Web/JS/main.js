@@ -14,14 +14,11 @@ $(document).ready(function () {
                 $.post("./backend/api.php", {
                     "busqueda": ""
                 }).done(datos => {
-                    
-                    console.log(datos)
-                    // console.log(JSON.parse(datos))
-
-                    // respuesta = JSON.parse(datos)
-                    //     for (let i = 0; i < respuesta.length; i++) {
-                    //         $.tmpl(template, respuesta[i]).appendTo("#resultados");
-                    //     }
+                    respuesta = JSON.parse(datos)
+                        for (let i = 0; i < respuesta.length; i++) {
+                            $.tmpl(template, respuesta[i]).appendTo("#resultados");
+                        }
+ 
                 });
 
             $("#busqueda").keyup(function () {

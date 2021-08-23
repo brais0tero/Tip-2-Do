@@ -1,7 +1,5 @@
-<!-- Hoja de funciones PHP con conexion PDO -->
-
-
 <?php
+// Hoja de funciones PHP con conexion PDO
 
     // Creacion de usuario
     function insertarUsuario($nombre, $correo, $claveHash)

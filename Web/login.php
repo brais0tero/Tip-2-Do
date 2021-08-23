@@ -100,4 +100,4 @@
 
 </html>
 
-<script src="./JS/validar.js"></script>
+<script type="module" src="./JS/validar.js"></script>
