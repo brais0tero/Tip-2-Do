@@ -6,7 +6,7 @@
      ?>
      
      <div class="d-flex flex-column text-white bg-dark justify-content-between" style="width: 4.5rem;">
-            <a href="./index.php" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip"
+            <a href="./Index.php" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip"
                 data-bs-placement="right" data-bs-original-title="Icon-only">
                 <svg class="bi" width="40" height="40" viewBox="0 0 180.12 106.21" viewBox="0 0 180.12 106.21">
                     <path fill="white"

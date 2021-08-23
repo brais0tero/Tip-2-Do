@@ -4,14 +4,14 @@
 
     // Inicio de sesion de usuario
     if (isset($_POST['login']))
-    {      
+    {   
       if(inicioSesion($_POST["correo"],$_POST['clave']))
         {
             session_start();  
         }
         else
         {
-            
+
         }
     }
 
@@ -39,7 +39,9 @@
         $datos = array();
         $datos = array_merge(buscarMiembro($buscado), buscarMultimedia($buscado));
 
-        echo json_encode($datos);
+echo(json_encode($datos));
+        // echo($datos);
+        // echo json_encode($datos);
     }
   //  echo json_encode( $_GET);
 

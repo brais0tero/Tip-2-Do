@@ -32,8 +32,7 @@
             $consulta = $db->query($query);
             $datos = $consulta->fetch();
             // var_dump($datos);
-            
-
+        
             if(password_verify($clave, $datos["contraseña"])){ 
                 return true;
             
