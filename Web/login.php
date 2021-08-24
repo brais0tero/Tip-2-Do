@@ -57,10 +57,10 @@
 
                         <p><span class="fa fa-user"></span><input type="text" type="email" name="correo" id="Logcorreo"
                                 placeholder="Correo electronico" required>
-                        </p> <!-- JS because of IE support; better: placeholder="Username" -->
+                        </p>
                         <p><span class="fa fa-lock"></span><input type="password" name="clave" id="Logclave"
                                 placeholder="Contraseña" required>
-                        </p> <!-- JS because of IE support; better: placeholder="Password" -->
+                        </p> 
 
                         <div>
                             <span style="width:48%; text-align:left;  display: inline-block;">
