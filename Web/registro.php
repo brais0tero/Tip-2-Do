@@ -11,17 +11,17 @@
   <link rel="icon" type="image/svg" href="./imagenes/Tip2Do.svg">
   <link rel="icon" type="image/svg" href="./imagenes/Tip2Do.svg">
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="./CSS/registro.css">
+  <link rel="stylesheet" href="./CSS/registro.css">
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 </head>
 
@@ -52,43 +52,41 @@
         <form action="./login.php" method="post">
 
           <fieldset class="clearfix">
-
-            <p><span class="fa fa-user"></span> <input type="text" name="nombre" placeholder="Nombre" id="Regnombre" required>
+            <!-- Usuario -->
+            <p><span class="fa fa-user"></span> <input type="text" name="nombre" placeholder="Nombre" id="Regnombre"
+                required>
             </p>
 
-            <p><span class="fa fa-envelope"></span><input type="text" type="email" name="correo" id="Logcorreo"
-                                placeholder="Correo electronico" required>
-                        </p>
+            <!-- Cooreo -->
+            <div id="correo">
 
+              <div class="invalid-feedback" style="display:block" id="errorCorreo"></div>
+              <p>
+                <span class="fa fa-envelope"></span>
+                <input type="text" type="email" name="correo" id="Regcorreo" placeholder="Correo electronico" required>
+              </p>
+            </div>
+
+            <!-- Clave -->
             <p><span class="fa fa-lock"></span><input type="password" name="clave" id="Regclave"
                 placeholder="Contraseña" required>
             </p>
             <p><span class="fa fa-lock"></span><input type="password" name="clave" id="RegclaveRep"
                 placeholder="Repetir Contraseña" required>
             </p>
-          
-          <div>
-          <span style="width:48%; text-align:left;  display: inline-block;">
-            <a href="./login.php">Log In</a>
-                            </span>
-          <span style="width:50%; text-align:right;  display: inline-block;"><input type="submit"
-              value="Registrarse"></span>
-          </div>
+
+            <!-- Botones -->
+            <div>
+              <span style="width:48%; text-align:left;  display: inline-block;">
+                <a href="./login.php">Log In</a>
+              </span>
+              <span style="width:50%; text-align:right;  display: inline-block;"><input type="submit"
+                  value="Registrarse"></span>
+            </div>
 
           </fieldset>
         </form>
       </div>
-
-      <!-- <div>
-        <form action="./login.php" method="POST">
-         
-          <input type="email" placeholder="Correo" name="correo" id="RegCorreo" required>
-          <input type="password" placeholder="Contraseña" name="clave" id="clave" required>
-          <input type="password" placeholder="Repetir Contraseña" name="repetir_clave" id="repetir_clave" required>
-          <span style="width:48%; text-align:left;  display: inline-block;">
-           
-      </div>
-      </form> -->
     </div>
 
   </div>
@@ -105,5 +103,6 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
 </body>
+<script type="module" src="./JS/validar.js"></script>
 
 </html>

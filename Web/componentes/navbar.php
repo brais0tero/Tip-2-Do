@@ -1,11 +1,10 @@
-     <?php
+<?php
      if(isset($_COOKIE['PHPSESSID']))
      {
         session_start();
      }  
      ?>
-     
-     <div class="d-flex flex-column text-white bg-dark justify-content-between" style="width: 4.5rem;">
+       <div class="d-flex flex-column text-white bg-dark justify-content-between" style="width: 4.5rem;">
             <a href="./Index.php" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip"
                 data-bs-placement="right" data-bs-original-title="Icon-only">
                 <svg class="bi" width="40" height="40" viewBox="0 0 180.12 106.21" viewBox="0 0 180.12 106.21">
@@ -60,12 +59,12 @@
             
                 <div class="border-top text-white">
                     <?php 
-                    if ($usuario!=null){
+                    if ($_SESSION["nombre"]!=null){
                     
                     ?>
-                    <a href="#"
+                    <a href="./usuario.php"
                         class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none">
-                        <img src="" alt="mdo" width="24" height="24" class="rounded-circle">
+                        <img src=<?php echo ''.$_SESSION["foto"].'' ?> alt=<?php echo ''.$_SESSION["nombre"].'' ?>  width="24" height="24" class="rounded-circle">
                     </a>
                     <?php
                     }

@@ -1,8 +1,24 @@
 <?php 
+include "./backend/conexionBD.php";
+
     if (! isset($_COOKIE['PHPSESSID']))
     {
-
+        header("Location: ./Index.php");
     }
+    else
+    {
+    session_start();
+    $db = dbConnect();
+
+            $query = "SELECT administrador as 'admin' FROM usuario WHERE id LIKE ".$_SESSION["id"];
+            $consulta = $db->query($query);
+            $datos = $consulta->fetch();
+           if($datos['admin']<>1)
+           {
+            header("Location: ./Index.php");
+           } 
+    }
+
 ?>
 <!-- AGREGAR SISTEMA DE DESTACOS -->
 

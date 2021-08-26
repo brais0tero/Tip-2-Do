@@ -7,11 +7,12 @@
     {
       if(inicioSesion($_POST["correo"],$_POST['clave']))
         {
-            session_start();  
+           
+            echo json_encode(true);
         }
         else
         {
-
+            echo json_encode(false);
         }
     }
 
@@ -41,5 +42,10 @@
 
         echo(json_encode($datos));
     }
- 
+
+    // Obtener ingformacion del mail
+    if(isset($_POST["CKcorreo"]))
+    {
+       echo json_encode((buscarCorreo($_POST["CKcorreo"])["correo"] == "")?TRUE:FALSE);
+    }
 ?>

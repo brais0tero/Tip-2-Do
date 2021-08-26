@@ -26,17 +26,23 @@
         try
         {
             $db = dbConnect();
-            $query = "SELECT * FROM usuario WHERE '". $correo ."' = correo";
+            $query = "SELECT * FROM usuario WHERE correo LIKE '$correo'";
             $consulta = $db->query($query);
-            $datos = $consulta->fetch();
-            // var_dump($datos);
-        
+            $datos = $consulta->fetch();        
             if(password_verify($clave, $datos["contraseña"])){ 
+
+                 session_start();
+                 $_SESSION["nombre"] = $datos["nombre"];
+                 $_SESSION["foto"] = $datos["foto"];
+                 $_SESSION["id"] = $datos["id"];
                 return true;
-            
+               
             }
-            // var_dump();
-            // echo $datos["contraseña"];
+            else
+            {
+                return false;
+            }
+           
             $db = null;  
         } 
         catch(PDOException $e) 
@@ -103,5 +109,13 @@
             return $datos;
     }
 
+    function buscarCorreo($mail){
+        $db = dbConnect();
+        $query = "SELECT correo FROM usuario WHERE correo like '$mail'";
+        $consulta = $db->query($query);
+        $dato = $consulta->fetch();
+        $db = null;
+        return $dato;
+    }
 
 ?>

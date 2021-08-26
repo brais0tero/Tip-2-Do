@@ -51,22 +51,33 @@
 
             <div id="login">
 
-                <form action="./Index.php" method="post">
+                <form id="Flogin" action="./Index.php" method="post" novalidate>
 
                     <fieldset class="clearfix">
-
-                        <p><span class="fa fa-user"></span><input type="text" type="email" name="correo" id="Logcorreo"
-                                placeholder="Correo electronico" required>
-                        </p>
-                        <p><span class="fa fa-lock"></span><input type="password" name="clave" id="Logclave"
-                                placeholder="Contraseña" required>
-                        </p> 
-
+                        <div id="correo">
+                            
+                        <div class="invalid-feedback" style="display:block" id="errorCorreo"></div>
+                                <p>
+                                    <span class="fa fa-user"></span>
+                                    <input type="text" type="email" name="correo"
+                                        id="Logcorreo" placeholder="Correo electronico" required>
+                                </p>
+                        </div>
+                        <div id="clave">
+                        <div class="invalid-feedback" style="display:block" id="errorClave"></div>
+                            <p>
+                                <span class="fa fa-lock"></span>
+                                <input type="password" name="clave" id="Logclave"
+                                    placeholder="Contraseña" required>
+                            </p>
+                        </div>
                         <div>
                             <span style="width:48%; text-align:left;  display: inline-block;">
                                 <a href="./registro.php">Regsitrarse</a>
                             </span>
-                            <span style="width:50%; text-align:right;  display: inline-block;"><input type="submit"
+                            <span style="width:50%; text-align:right;  display: inline-block;">
+                            <input type="submit"
+                                    id="BtnLogIn"
                                     value="Iniciar Sesion"></span>
                         </div>
 
@@ -88,7 +99,5 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 </body>
-
-</html>
-
 <script type="module" src="./JS/validar.js"></script>
+</html>

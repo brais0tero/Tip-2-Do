@@ -6,7 +6,7 @@ $(document).ready(function () {
     var contenido = null;
     let respuesta = null;
     $('#nav').load("./componentes/navbar.php");
-   
+  
     $.get('./componentes/contenido.html')
         .done(template => {
             //Separar en funcion de la pagina
