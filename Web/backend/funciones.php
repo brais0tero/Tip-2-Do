@@ -118,4 +118,13 @@
         return $dato;
     }
 
+    function buscarUsuario($nombre){
+        $db = dbConnect();
+        $query = "SELECT nombre FROM usuario WHERE nombre like '$nombre'";
+        $consulta = $db->query($query);
+        $dato = $consulta->fetch();
+        $db = null;
+        return $dato;
+    }
+
 ?>

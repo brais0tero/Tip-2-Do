@@ -48,4 +48,10 @@
     {
        echo json_encode((buscarCorreo($_POST["CKcorreo"])["correo"] == "")?TRUE:FALSE);
     }
+
+    // Obtener ingformacion del mail
+    if(isset($_POST["CKnombre"]))
+    {
+       echo json_encode((buscarCorreo($_POST["CKnombre"])["nombre"] == "")?TRUE:FALSE);
+    }
 ?>

@@ -1,7 +1,5 @@
 <!-- Pagina de registro -->
 
-<!-- Mejorar CSS -->
-
 <!doctype html>
 <html lang="es">
 
@@ -53,9 +51,16 @@
 
           <fieldset class="clearfix">
             <!-- Usuario -->
-            <p><span class="fa fa-user"></span> <input type="text" name="nombre" placeholder="Nombre" id="Regnombre"
-                required>
-            </p>
+            <div id="usuario">
+
+              <div class="invalid-feedback" style="display:block" id="errorNombre"></div>
+
+              <p>
+                <span class="fa fa-user"></span>
+                <input type="text" name="nombre" placeholder="Nombre" id="Regnombre" required>
+              </p>
+            </div>
+
 
             <!-- Cooreo -->
             <div id="correo">
@@ -68,12 +73,17 @@
             </div>
 
             <!-- Clave -->
-            <p><span class="fa fa-lock"></span><input type="password" name="clave" id="Regclave"
-                placeholder="Contraseña" required>
-            </p>
-            <p><span class="fa fa-lock"></span><input type="password" name="clave" id="RegclaveRep"
-                placeholder="Repetir Contraseña" required>
-            </p>
+            <div id="contraseña">
+            <div class="invalid-feedback" style="display:block" id="errorClave"></div>
+              <p><span class="fa fa-lock"></span><input type="password" name="clave" id="Regclave"
+                  placeholder="Contraseña" required>
+              </p> 
+              <div class="invalid-feedback" style="display:block" id="errorClaveRep"></div>
+              <p><span class="fa fa-lock"></span><input type="password" name="clave" id="RegclaveRep"
+                  placeholder="Repetir Contraseña" required>
+              </p>
+            </div>
+
 
             <!-- Botones -->
             <div>
@@ -103,6 +113,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
 </body>
+
 <script type="module" src="./JS/validar.js"></script>
 
 </html>
