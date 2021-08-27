@@ -63,11 +63,10 @@ $db = dbConnect();
   <!-- Mostrar Contenido pelicula -->
   <main class="container-fluid">
     <section class="row portada" <?php echo 'style="background-image: url('.$datos[0]["Imagen"].')"'?>>
-    <div class="col-lg portadaTextp">
+    <div class="text-center">
     <h1><?php echo $datos[0]["Titulo"]?></h1>
       <p><?php echo $datos[0]["Sinopsis"] ?></p>
     </div>
-    <div class="col-md">
  <img src=<?php echo $datos[0]["Imagen"].""?> style="visibility: hidden;" class="img-fluid"/>
 </div>
     </div>
@@ -76,7 +75,7 @@ $db = dbConnect();
     <section>
       
       <!-- contenido -->
-    <table class="col-md-12 table-condensed ">
+    <table class="col-md-12 table-condensed text-center ">
           <tbody>
             <tr>
               <td data-title="Genero">Genero:</td>

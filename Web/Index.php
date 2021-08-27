@@ -49,39 +49,47 @@ $valorados = $consulta->fetchall();
     <!-- Navbar injectada -->
   </nav>
 
+  <!-- Portada -->
   <main class="container-fluid">
-    <section class="row">
-      <a href=<?php echo $datos[0]["URL"]."" ?> class="portada" <?php echo 'style="background-image: url('.$datos[0]["Imagen"].')"'?>>
-        <div class="col-lg portadaTextp">
-          <h1><?php echo $datos[0]["nombre"]?></h1>
-          <p><?php echo $datos[0]["informacion"] ?></p>
-        </div>
-        <div class="col-md">
-          <img src=<?php echo $datos[0]["IMG"].""?> style="visibility: hidden;" class="img-fluid" />
-        </div>
-      </a>
+    <section class="row portada" <?php echo 'style="background-image: url('.$datos[0]["IMG"].')"'?>>
+      <div class="text-center">
+        <h1><?php echo $datos[0]["nombre"]?></h1>
+        <p><?php echo $datos[0]["informacion"] ?></p>
+      </div>
+      <img src=<?php echo $datos[0]["IMG"].""?> style="visibility: hidden;" class="img-fluid" />
+      </div>
+      </div>
+
     </section>
 
+
+    <!-- Contenido -->
     <section class="row">
       <h2 style="display: inline-flex;">Mejor Valoradas</h2>
-      <div id="valoradas" class="resultados">
-      <?php
+      <div class="scroller">
+        <div class="row__inner">
+          <?php
           foreach($valorados as $valorado){
+    
           ?>
-                <a href="<?php echo $valorado['URL']?>" class="box">
+          <div class="tile">
+            <a href="<?php echo $valorado['URL']?>" class="">
+              <div class="tile__media">
+                <img class="tile__img" src=<?php echo $valorado['IMG']."" ?> alt="" />
+              </div>
+              <div class="tile__details">
 
-                    <div class="imgbox">
+                <div class="tile__title">
+                  <h3><?php echo $valorado['nombre']?></h3>
+                  <p><?php echo $valorado['informacion']?></p>
+                </div>
+              </div>
+            </a>
+          </div>
 
-                        <img src=<?php echo $valorado['IMG']."" ?> class="img-responsive">
-                    </div>
-                    <div class="content">
-                        <h3><?php echo $valorado['nombre']?></h3>
-                        <p><?php echo $valorado['informacion']?></p>
-                    </div>
-
-                </a>
-                <?php
+          <?php
   }  ?>
+        </div>
       </div>
     </section>
 

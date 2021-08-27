@@ -4,6 +4,20 @@ body
     background-color: black ;
 }
 
+a:link,
+a:hover,
+a:active,
+a:visited {
+  -webkit-transition: color 150ms;
+  transition: color 150ms;
+  color: #95a5a6;
+  text-decoration: none;
+}
+a:hover {
+  color: #7f8c8d;
+  text-decoration: underline;
+}
+
 /* Nav Bar */
 nav {
     display: flex;
@@ -100,20 +114,104 @@ box-shadow: 0 50px 50x rgba(0,0,0,.5);
     font-weight: 400;
 }
 
-.portada{  background: no-repeat center center fixed; 
+.portada{  background: no-repeat; 
+    position: relative; background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
+    padding-top: 170px; padding-bottom: 174px;
     text-align: center;
     text-shadow: 0 1px 3px rgba(0,0,0,.5);
     }
 
 .portadaTexto{
- background-color: rgba(0, 0, 0, 0.349);  
+ background-color: rgba(0, 0, 0, 0.459);  
+ text-shadow: 0px 0px 17px rgba(150, 150, 150, 1);
+
 }
 
 .portada img{
     width: 25vh;
 }
+
+/* Carrusel contenido */
+.scroller {
+          overflow: scroll;
+          width: 100%;
+        }
+        .row__inner {
+          -webkit-transition: 450ms -webkit-transform;
+          transition: 450ms -webkit-transform;
+          transition: 450ms transform;
+          transition: 450ms transform, 450ms -webkit-transform;
+          font-size: 0;
+          white-space: nowrap;
+          margin: 1rem 0;
+          padding-bottom: 10px;
+        }
+        .tile {
+          position: relative;
+          display: inline-block;
+          width: 250px;
+          height: 140.625px;
+          margin-right: 10px;
+          font-size: 20px;
+          cursor: pointer;
+          -webkit-transition: 450ms all;
+          transition: 450ms all;
+          -webkit-transform-origin: center left;
+                  transform-origin: center left;
+        }
+        .tile__img {
+          width: 250px;
+          height: 140.625px;
+          -o-object-fit: cover;
+             object-fit: cover;
+        }
+        .tile__details {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          top: 0;
+          font-size: 10px;
+          opacity: 0;
+          background: -webkit-gradient(linear, left bottom, left top, from(rgba(0,0,0,0.9)), to(rgba(0,0,0,0)));
+          background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+          -webkit-transition: 450ms opacity;
+          transition: 450ms opacity;
+        }
+        .tile__details:after,
+        .tile__details:before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          display: #000;
+        }
+.tile:hover .tile__details {
+    opacity: 1;
+  }
+  .tile__title {
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+  }
+  .row__inner:hover {
+    -webkit-transform: translate3d(50%);
+            transform: translate3d(50%);
+  }
+  .row__inner:hover .tile {
+    opacity: 10;
+  }
+  .row__inner:hover .tile:hover {
+    -webkit-transform: scale(1);
+            transform: scale(1.2);
+    opacity: 10;
+    z-index: 100;
+  }
+  .tile:hover ~ .tile {
+    -webkit-transform: translate3d(50%);
+            transform: translate3d(50%);
+  }
