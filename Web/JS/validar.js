@@ -1,7 +1,7 @@
 import "./jquery-3.6.0.min.js";
 
 $(document).ready(function () {
-
+   
     // Comprobar correo en Login
     $("#Logcorreo").blur(function () {
         let parente = $(this).parent();
@@ -21,7 +21,6 @@ $(document).ready(function () {
                 })
                 .done(respuesta => {
                     correo = JSON.parse(respuesta);
-                    console.log(correo)
                     if (correo === true) {
                         $("#errorCorreo")
                             .css('display', 'inline-block')
@@ -98,11 +97,10 @@ $(document).ready(function () {
         } else {
             var correo =
                 $.post("./backend/api.php", {
-                    "CKnombre": contenido
+                    "CheckNombre": contenido
                 })
                 .done(respuesta => {
-                    correo = JSON.parse(respuesta);
-                    console.log(correo)
+                    correo = JSON.parse(respuesta);                
                     if (correo === false) {
                         $("#errorNombre")
                             .css('display', 'inline-block')
@@ -126,7 +124,6 @@ $(document).ready(function () {
         }
     })
 
-
     // Comprobar correo en registro
     $("#Regcorreo").blur(function () {
         let parente = $(this).parent();
@@ -146,7 +143,6 @@ $(document).ready(function () {
                 })
                 .done(respuesta => {
                     correo = JSON.parse(respuesta);
-                    console.log(correo)
                     if (correo === false) {
                         $("#errorCorreo")
                             .css('display', 'inline-block')
@@ -167,6 +163,66 @@ $(document).ready(function () {
                         parente.children().addClass("bg-success");
                     }
                 })
+        }
+    });
+
+    // comprobar contraseña
+    $("#Regclave").blur(function(){
+        let parente = $(this).parent();
+    
+        if(! /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,}$/.test($(this).val())){
+            $("#errorClave")
+            .css('display', 'inline-block')
+            .text("La contraseña no cumple los criterios");
+
+        parente.children().addClass("bg-danger");
+        }
+        else
+        {
+            $("#errorClave")
+            .css('display', 'none')
+            .text("");
+
+        parente.children().removeClass("bg-danger");
+        }
+    })
+
+    // comprobar contraseña duplicado
+    $("#RegclaveRep").blur(function(){
+        let parente = $(this).parent();
+    
+        if($(this).val() != $("#Regclave").val()){
+            $("#errorClaveRep")
+            .css('display', 'inline-block')
+            .text("La contraseña no cumple los criterios");
+
+        parente.children().addClass("bg-danger");
+        }
+        else
+        {
+            $("#errorClaveRep")
+            .css('display', 'none')
+            .text("");
+
+        parente.children().removeClass("bg-danger");
+        }
+    })
+
+    // enviar registro
+    $("#registro").submit(function (e) { 
+        e.preventDefault();
+        if($("input.bg-danger").length<=0){
+            $.post("./backend/api.php", {
+                "registro": "",
+                "clave":$("#Regclave").val(),
+                "correo":$("#Regcorreo").val(),
+                "nombre":  $("#Regnombre").val()
+            })
+            .done(function(respuesta){
+                
+                window.location.replace("./login.php")
+            })
+
         }
     });
 

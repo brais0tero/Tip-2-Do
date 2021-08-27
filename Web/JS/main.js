@@ -1,6 +1,6 @@
 import "./jquery-3.6.0.min.js";
 import "./jquery.tmpl.js";
-import "./funciones.js"
+import "./funciones.js";
 
 $(document).ready(function () {
     var contenido = null;

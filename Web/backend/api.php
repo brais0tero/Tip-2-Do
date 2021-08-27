@@ -22,7 +22,7 @@
         $passHas = password_hash($_POST["clave"], PASSWORD_DEFAULT);
 
 
-        insertarUsuario($_POST["nombre"],$_POST["correo"],  $passHas );
+       insertarUsuario($_POST["nombre"],$_POST["correo"],  $passHas );
 
     }
 
@@ -50,8 +50,8 @@
     }
 
     // Obtener ingformacion del mail
-    if(isset($_POST["CKnombre"]))
+    if(isset($_POST["CheckNombre"]))
     {
-       echo json_encode((buscarCorreo($_POST["CKnombre"])["nombre"] == "")?TRUE:FALSE);
+        echo json_encode((buscarUsuario($_POST["CheckNombre"])["nombre"] == "")?TRUE:FALSE);
     }
 ?>

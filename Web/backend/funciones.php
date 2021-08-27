@@ -12,7 +12,7 @@
         $consulta->bindValue(":correo", $correo);
         $consulta->bindValue(":contrasenha", $claveHash);
 
-       $consulta->execute();
+      return $consulta->execute();
         $db = null;  
         } catch(PDOException $e) 
         { 
