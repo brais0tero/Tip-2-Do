@@ -63,80 +63,80 @@ $db = dbConnect();
   <!-- Mostrar Contenido pelicula -->
   <main class="container-fluid">
     <section class="row portada" <?php echo 'style="background-image: url('.$datos[0]["Imagen"].')"'?>>
-    <div class="text-center">
-    <h1><?php echo $datos[0]["Titulo"]?></h1>
-      <p><?php echo $datos[0]["Sinopsis"] ?></p>
-    </div>
- <img src=<?php echo $datos[0]["Imagen"].""?> style="visibility: hidden;" class="img-fluid"/>
-</div>
-    </div>
-        
-    </section>
-    <section>
-      
-      <!-- contenido -->
-    <table class="col-md-12 table-condensed text-center ">
+      <div class="col-md text-center">
+        <h1><?php echo $datos[0]["Titulo"]?></h1>
+        <p><?php echo $datos[0]["Sinopsis"] ?></p>
+      </div>
+      <div class="col-md">
+        <table class="mx-auto table-condensed ">
           <tbody>
             <tr>
               <td data-title="Genero">Genero:</td>
               <td data-title="GeneroTipo">
                 <?php
-                  foreach ($generos as $genero){
-                      echo $genero["Tipo"];
-                  }
-                  ?>
+                    foreach ($generos as $genero){
+                        echo $genero["Tipo"];
+                    }
+                    ?>
               </td>
-
             </tr>
             <tr>
               <td data-title="Clasificacion">Clasificacion</td>
               <td data-title="TipoClasificacion"><?php echo $datos[0]["Clasificacion"] ?></td>
-
             </tr>
             <tr>
               <td data-title="Duracion">Duracion (minutos):</td>
               <td data-title="CantidadDuracion"><?php echo $datos[0]["Duracion"] ?></td>
-
             </tr>
             <tr>
               <td data-title="Nota">Nota:</td>
               <td data-title="CantidadNota"><?php echo $datos[0]["Nota"] ?></td>
-
             </tr>
             <tr>
               <td data-title="Franquicia">Franquicia:</td>
               <td data-title="InfoFranquicia"><?php
-                foreach($franquicias as $franquicia)
-                {
-                  echo $franquicia["Abreviatura"];
-                }
-                ?></td>
-
+                  foreach($franquicias as $franquicia)
+                  {
+                    echo $franquicia["Abreviatura"];
+                  }
+                  ?></td>
             </tr>
             <tr>
               <td data-title="Plataformas">Plataformas:</td>
-              <td data-title="PlataformasInfo"><?php 
-                 foreach($plataformas as $plataforma)
-                 {
-                   echo '<a href='.$plataforma["URL"].'>
-                   '.$plataforma["Nombre"].'
-                   </a>';
-                 }
-                ?></td>
-
+              <td data-title="PlataformasInfo"><?php
+                   foreach($plataformas as $plataforma)
+                   {
+                     echo '<a href='.$plataforma["URL"].'>
+                     '.$plataforma["Nombre"].'
+                     </a>';
+                   }
+                  ?></td>
             </tr>
           </tbody>
         </table>
-          <!-- Trailers -->
-          <?php
+      </div>
+      <img src=<?php echo $datos[0]["Imagen"].""?> style="visibility: hidden;" class="img-fluid" />
+
+
+     
+
+    </section>
+    <section>
+
+      <!-- miembros -->
+
+      <!-- Trailers -->
+      <?php
           foreach($trailers as $trailer){
           ?>
-          <div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo  explode("https://youtu.be/",$trailer['URL'])[1] ?>" allowfullscreen></iframe>
-<?php
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item"
+          src="https://www.youtube.com/embed/<?php echo  explode("https://youtu.be/",$trailer['URL'])[1] ?>"
+          allowfullscreen></iframe>
+        <?php
   }  ?>
-</div>       
-          
+      </div>
+
     </section>
   </main>
   <!-- Optional JavaScript -->

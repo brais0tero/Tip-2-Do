@@ -51,17 +51,19 @@ $valorados = $consulta->fetchall();
 
   <!-- Portada -->
   <main class="container-fluid">
-    <section class="row portada" <?php echo 'style="background-image: url('.$datos[0]["IMG"].')"'?>>
-      <div class="text-center">
-        <h1><?php echo $datos[0]["nombre"]?></h1>
-        <p><?php echo $datos[0]["informacion"] ?></p>
-      </div>
-      <img src=<?php echo $datos[0]["IMG"].""?> style="visibility: hidden;" class="img-fluid" />
-      </div>
-      </div>
+    <a href=<?php echo $datos[0]["URL"]."" ?>> 
+  <section class="row portada" <?php echo 'style="background-image: url('.$datos[0]["IMG"].')"'?>> 
+    <div class="text-center">
+    <h1><?php echo $datos[0]["nombre"]?></h1>
+    <p><?php echo $datos[0]["informacion"] ?></p>
+    </div>
+ <img src=<?php echo $datos[0]["IMG"].""?> style="visibility: hidden;" class="img-fluid"/>
 
+</div>
+    </div>
+      
     </section>
-
+    </a>
 
     <!-- Contenido -->
     <section class="row">
@@ -71,7 +73,7 @@ $valorados = $consulta->fetchall();
           <?php
           foreach($valorados as $valorado){
     
-          ?>
+          ?> 
           <div class="tile">
             <a href="<?php echo $valorado['URL']?>" class="">
               <div class="tile__media">

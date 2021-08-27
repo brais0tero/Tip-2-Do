@@ -215,3 +215,16 @@ box-shadow: 0 50px 50x rgba(0,0,0,.5);
     -webkit-transform: translate3d(50%);
             transform: translate3d(50%);
   }
+
+  table {
+    width: auto !important;
+    table-layout: auto !important;
+}
+table thead th, table tfoot th {
+    width: auto !important;
+}
+table tbody td, table tfoot td {
+    width: auto !important;
+    padding: 1%;
+    text-align: center;
+}
