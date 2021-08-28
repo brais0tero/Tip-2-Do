@@ -74,7 +74,7 @@
                         </div>
                         <div>
                             <span style="width:48%; text-align:left;  display: inline-block;">
-                                <a href="./registro.php">Regsitrarse</a>
+                                <a href="./registro.php">Registrarse</a>
                             </span>
                             <span style="width:50%; text-align:right;  display: inline-block;">
                             <input type="submit"

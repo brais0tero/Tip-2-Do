@@ -35,6 +35,7 @@
                  $_SESSION["nombre"] = $datos["nombre"];
                  $_SESSION["foto"] = $datos["foto"];
                  $_SESSION["id"] = $datos["id"];
+                 
                 return true;
                
             }

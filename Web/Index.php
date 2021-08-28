@@ -39,8 +39,7 @@ $valorados = $consulta->fetchall();
   <!-- custom css -->
   <link rel="stylesheet" href="./CSS/estilos.css">
 
-  <!-- Custom JS -->
-  <script src="./JS/main.js" type="module"></script>
+  
 
 </head>
 
@@ -107,6 +106,8 @@ $valorados = $consulta->fetchall();
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
+  <!-- Custom JS -->
+  <script src="./JS/main.js" type="module"></script>
 </body>
 
 </html>

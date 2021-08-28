@@ -34,6 +34,14 @@ $db = dbConnect();
             $consulta = $db->query($query);
             $franquicias = $consulta->fetchAll();
 
+
+               //Obtener Miembros
+          $query = "SELECT CONCAT('./miembro.php?ID=', participante.id) as URL, participante.nombre as nombre, participante_multimedia.puesto as puesto, participante.imagen as IMG FROM participante
+          INNER JOIN participante_multimedia
+          ON participante_multimedia.ID_multimedia = participante.id where participante_multimedia.ID_multimedia =".$_GET['ID'];
+          $consulta = $db->query($query);
+          $miembros = $consulta->fetchAll();
+
             $db = null; 
     
 ?>
@@ -42,6 +50,7 @@ $db = dbConnect();
 
 <head>
   <title>Tip 2 Do | <?php echo $datos[0]["Titulo"]?></title>
+  <link rel="icon" type="image/svg" href="./imagenes/Tip2Do.svg">
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -124,7 +133,34 @@ $db = dbConnect();
     <section>
 
       <!-- miembros -->
+         <!-- miembros -->
+      <div class="row">
+        <h2 style="display: inline-flex;">Miembros</h2>
+        <div class="scroller">
+          <div class="row__inner">
+            <?php
+          foreach($miembros as $miembro){
+    
+          ?>
+            <div class="tile">
+              <a href="<?php echo $miembro['URL']?>">
+                <div class="tile__media">
+                  <img class="tile__img" src=<?php echo $miembro['IMG']."" ?> alt="<?php echo $miembro['nombre']?>" />
+                </div>
+                <div class="tile__details">
+                  <div class="tile__title">
+                    <h3><?php echo $miembro['nombre']?></h3>
+                    <p><?php echo $miembro['puesto']?></p>
+                  </div>
+                </div>
+              </a>
+            </div>
 
+            <?php
+  }  ?>
+          </div>
+        </div>
+      </div>
       <!-- Trailers -->
       <?php
           foreach($trailers as $trailer){
