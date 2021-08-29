@@ -54,4 +54,8 @@
     {
         echo json_encode((buscarUsuario($_POST["CheckNombre"])["nombre"] == "")?TRUE:FALSE);
     }
+
+    if(isset($_POST["agregarPeli"])){
+        echo 1;
+    }
 ?>
