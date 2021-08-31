@@ -2,7 +2,7 @@
 include "./backend/conexionBD.php";
 
 $db = dbConnect();
-$query = "SELECT CONCAT('./', LOWER(multimedia.tipo),'.php?ID=', multimedia.id) as URL, multimedia.titulo as nombre, multimedia.tipo as informacion, multimedia.imagenPortada as IMG FROM multimedia WHERE multimedia.estreno = (SELECT MAX(multimedia.estreno)
+$query = "SELECT CONCAT('./', LOWER(multimedia.tipo),'.php?ID=', multimedia.id) as URL, multimedia.titulo as nombre, multimedia.tipo as informacion, multimedia.imagen as IMG FROM multimedia WHERE multimedia.estreno = (SELECT MAX(multimedia.estreno)
 FROM multimedia WHERE UPPER(multimedia.tipo) LIKE UPPER('%".$_GET["contenido"]."%'))";
 
 $consulta = $db->query($query);
@@ -43,7 +43,7 @@ $valorados = $consulta->fetchall();
 
 </head>
 
-<body class="d-flex">
+<body>
   <nav id="nav" class="d-flex sticky-top">
     <!-- Navbar injectada -->
   </nav>

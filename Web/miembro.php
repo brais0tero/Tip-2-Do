@@ -10,7 +10,7 @@ $db = dbConnect();
 
           //Obtener Trabajos
 
-          $query = "SELECT CONCAT('./', LOWER(multimedia.tipo),'.php?ID=', multimedia.id) as URL, multimedia.titulo as nombre, participante_multimedia.puesto as informacion, multimedia.imagen as IMG, participante_multimedia.ID_participante FROM multimedia
+          $query = "SELECT CONCAT('./', LOWER(multimedia.tipo),'.php?ID=', multimedia.id) as URL, multimedia.titulo as nombre, participante_multimedia.puesto as informacion, multimedia.imagenPortada as IMG, participante_multimedia.ID_participante FROM multimedia
           INNER JOIN participante_multimedia
           ON participante_multimedia.ID_multimedia = multimedia.id where participante_multimedia.ID_participante=".$_GET['ID'];
           $consulta = $db->query($query);

@@ -28,9 +28,9 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="middle">
-            <div class="logo">
+    <div class="container container-fluid">
+        <div class="middle row">
+            <div class="logo col-md">
                 <a href="./Index.php">
                     <svg  viewBox="0 0 180.12 106.21" viewBox="0 0 180.12 106.21" class=" mx-auto d-block">
                         <path fill="white"
@@ -50,7 +50,7 @@
                 <div class="clearfix"></div>
             </div>
 
-            <div id="login">
+            <div id="login" class="col-md">
 
                 <form id="Flogin" action="./Index.php" method="post" novalidate>
 

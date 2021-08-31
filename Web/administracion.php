@@ -70,7 +70,10 @@ SSELECT table_name as Tabla, COLUMN_NAME as Datos, DATA_TYPE as Tipo FROM inform
         <!-- Funciones de Api con INSET INTO (Nombre de table seleccionado) -->
         <h2>Agregar datos</h2>
         <div id="crear">
-
+          <button type="button" class="btn btn-primary" id="Pelis">Agregar Peliculas/Actores automaticamente</button>
+          
+          <button id="Series" class="btn btn-primary" id="Pelis">Agregar Series/Actores automaticamente</button>
+          <button id="Series" class="btn btn-primary" id="Pelis">Actualizar Miembros</button>
         </div>
 
     </section>

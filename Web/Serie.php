@@ -14,7 +14,7 @@ $db = dbConnect();
             $datos = $consulta->fetchAll();
 
             // Obtener datos de genero de la serie
-            $query = "SELECT genero.nombre as Tipo, genero.descripcion as Descripcion From genero INNER JOIN genero_multimedia ON genero_multimedia.ID_genero = genero.id WHERE genero_multimedia.ID_multimedia = ".$_GET['ID'];
+            $query = "SELECT genero.nombre as Tipo From genero INNER JOIN genero_multimedia ON genero_multimedia.ID_genero = genero.id WHERE genero_multimedia.ID_multimedia = ".$_GET['ID'];
             $consulta = $db->query($query);
             $generos = $consulta->fetchAll();
            

@@ -20,6 +20,140 @@
         } 
     }
 
+      // Creacion de MultimediaAuto
+      function insertarMultimedia($id , $titulo, $sinopsis, $imagen, $imagenPortada, $estreno, $tipo)
+      {
+          try{
+               $db = dbConnect();
+          $query = 'INSERT IGNORE INTO  multimedia (id , titulo, sinopsis, tipo,imagen, imagenPortada, estreno) VALUES (:id , :titulo, :sinopsis, :tipo, :imagen, :imagenPortada, :estreno)';
+          $consulta = $db->prepare($query);
+          $consulta->bindValue(":id", $id);
+          $consulta->bindValue(":titulo", $titulo);
+          $consulta->bindValue(":sinopsis", $sinopsis);
+          $consulta->bindValue(":imagen", $imagen);
+          $consulta->bindValue(":imagenPortada", $imagenPortada);
+          $consulta->bindValue(":estreno", $estreno);
+          $consulta->bindValue(":tipo", $tipo);
+          echo $consulta->execute();
+           
+          $db = null;  
+          } catch(PDOException $e) 
+          { 
+          echo $e->getMessage(); 
+          } 
+      }
+    //   Insertar pelicula
+      function insertarPelicula($id, $duracion)
+      {
+
+          try{
+               $db = dbConnect();
+          $query = 'INSERT IGNORE INTO  pelicula (ID_Multimedia, duracion) VALUES (:id, :duracion)';
+          $consulta = $db->prepare($query);
+          $consulta->bindValue(":id", $id);
+          $consulta->bindValue(":duracion", $duracion);
+          echo $consulta->execute();
+           
+          $db = null;  
+          } catch(PDOException $e) 
+          { 
+          echo $e->getMessage(); 
+          } 
+      }
+  //   Insertar serie
+  function insertarSerie($id, $temporada)
+  {
+
+      try{
+           $db = dbConnect();
+      $query = 'INSERT IGNORE INTO  pelicula (ID_Multimedia, temporada) VALUES (:id, :temporada)';
+      $consulta = $db->prepare($query);
+      $consulta->bindValue(":id", $id);
+      $consulta->bindValue(":temporada", $temporada);
+      echo $consulta->execute();
+       
+      $db = null;  
+      } catch(PDOException $e) 
+      { 
+      echo $e->getMessage(); 
+      } 
+  }
+
+    //   Insertar Genero
+
+    function insertarGenero( $generos){     
+        try{
+            $db = dbConnect();
+       $query = 'INSERT IGNORE INTO  genero (id, nombre) VALUES (:id, :nombre)';
+       foreach ($generos as $genero) {
+
+           $consulta = $db->prepare($query);
+           $consulta->bindValue(":id", intval($genero['id']));
+           $consulta->bindValue(":nombre", $genero['name']);
+            echo $consulta->execute();
+        }
+       
+        
+       $db = null;  
+       } catch(PDOException $e) 
+       { 
+       echo $e->getMessage(); 
+       } 
+    }
+    function insertarGenero_multimedia($id, $generos){ 
+        try{
+            $db = dbConnect();
+       $query = 'INSERT IGNORE INTO  genero_multimedia (ID_multimedia, ID_genero) VALUES (:ID_multimediad, :ID_genero)';
+        foreach ($generos as $genero) {
+             $consulta = $db->prepare($query);
+             $consulta->bindValue(":ID_genero", intval($genero['id']));
+             $consulta->bindValue(":ID_multimediad", $id);
+             echo $consulta->execute();
+        }
+       $db = null;  
+       } catch(PDOException $e) 
+       { 
+       echo $e->getMessage(); 
+       } 
+    }
+
+    function insertarParticipante($miembros){
+        try{
+            $db = dbConnect();
+       $query = 'INSERT IGNORE INTO participante (id, nombre, imagen) VALUES (:id, :nombre, :imagen)';
+        foreach ($miembros as $miembro) {
+             $consulta = $db->prepare($query);
+             $consulta->bindValue(":id", intval($miembro['id']));
+             $consulta->bindValue(":nombre", $miembro['name']);
+             $consulta->bindValue(":imagen", 'https://image.tmdb.org/t/p/500w'.$miembro['profile_path']);
+             echo $consulta->execute();
+        }
+       $db = null;  
+       } catch(PDOException $e) 
+       { 
+       echo $e->getMessage(); 
+       } 
+    }
+
+    function insertarParticipanteMultimedia($miembros, $id){
+        try{
+            $db = dbConnect();
+       $query = 'INSERT IGNORE INTO  participante_multimedia (ID_multimedia, ID_participante, puesto) VALUES (:ID_multimediad, :ID_participante, :puesto)';
+        foreach ($miembros as $miembro) {
+             $consulta = $db->prepare($query);
+             $consulta->bindValue(":ID_participante", intval($miembro['id']));
+             $consulta->bindValue(":ID_multimediad", $id);
+             $consulta->bindValue(":puesto",$miembro['character'] );
+             echo $consulta->execute();
+        }
+       $db = null;  
+       } catch(PDOException $e) 
+       { 
+       echo $e->getMessage(); 
+       } 
+    
+    }
+
     // funcion para inicar sesion
      function inicioSesion($correo, $clave)
     {
@@ -63,7 +197,6 @@
             $datos = $consulta->fetchall();
             $db = null; 
             return json_encode($datos);
-           
         } 
         catch(PDOException $e) 
         { 
@@ -77,7 +210,7 @@
         try
         {
             $db = dbConnect();
-            $query = "SELECT CONCAT('./', LOWER(multimedia.tipo),'.php?ID=', multimedia.id) as URL, multimedia.titulo as nombre, multimedia.tipo as informacion, multimedia.imagen as IMG FROM multimedia WHERE UPPER(multimedia.titulo) LIKE UPPER('%$buscado%')";
+            $query = "SELECT CONCAT('./', LOWER(multimedia.tipo),'.php?ID=', multimedia.id) as URL, multimedia.titulo as nombre, multimedia.tipo as informacion, multimedia.imagenPortada as IMG FROM multimedia WHERE UPPER(multimedia.titulo) LIKE UPPER('%$buscado%')";
 
             $consulta = $db->query($query);
             $datos = $consulta->fetchall();
@@ -109,6 +242,8 @@
             $db = null; 
             return $datos;
     }
+
+// sistema de busqueda
 
     function buscarCorreo($mail){
         $db = dbConnect();

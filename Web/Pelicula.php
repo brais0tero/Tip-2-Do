@@ -5,7 +5,7 @@
 include "./backend/conexionBD.php";
 $db = dbConnect();
             //  Obtener informacion de la pelicula
-            $query = "SELECT multimedia.titulo as Titulo, multimedia.nota as Nota, multimedia.clasificacion as Clasificacion, multimedia.sinopsis as Sinopsis, multimedia.imagenPortada as Imagen, pelicula.duracion AS Duracion
+            $query = "SELECT multimedia.titulo as Titulo, multimedia.nota as Nota, multimedia.clasificacion as Clasificacion, multimedia.sinopsis as Sinopsis, multimedia.imagen as Imagen, pelicula.duracion AS Duracion
             FROM multimedia
             INNER JOIN pelicula 
             ON multimedia.id = pelicula.ID_multimedia WHERE multimedia.id=".$_GET['ID'];
@@ -13,7 +13,7 @@ $db = dbConnect();
             $datos = $consulta->fetchAll();
 
             // Obtener datos de genero de la pelicula
-            $query = "SELECT genero.nombre as Tipo, genero.descripcion as Descripcion From genero INNER JOIN genero_multimedia ON genero_multimedia.ID_genero = genero.id WHERE genero_multimedia.ID_multimedia = ".$_GET['ID'];
+            $query = "SELECT genero.nombre as Tipo From genero INNER JOIN genero_multimedia ON genero_multimedia.ID_genero = genero.id WHERE genero_multimedia.ID_multimedia = ".$_GET['ID'];
             $consulta = $db->query($query);
             $generos = $consulta->fetchAll();
            
@@ -65,8 +65,8 @@ $db = dbConnect();
   <script src="./JS/main.js" type="module"></script>
 </head>
 
-<body class="d-flex">
-  <nav id="nav" class="d-flex sticky-top">
+<body>
+  <nav id="nav" class="sticky-top">
     <!-- Navbar injectada -->
   </nav>
   <!-- Mostrar Contenido pelicula -->
@@ -84,13 +84,13 @@ $db = dbConnect();
               <td data-title="GeneroTipo">
                 <?php
                     foreach ($generos as $genero){
-                        echo $genero["Tipo"];
+                        echo $genero["Tipo"]. " ";
                     }
                     ?>
               </td>
             </tr>
             <tr>
-              <td data-title="Clasificacion">Clasificacion</td>
+              <td data-title="Clasificacion">Clasificacion:</td>
               <td data-title="TipoClasificacion"><?php echo $datos[0]["Clasificacion"] ?></td>
             </tr>
             <tr>
@@ -125,14 +125,9 @@ $db = dbConnect();
         </table>
       </div>
       <img src=<?php echo $datos[0]["Imagen"].""?> style="visibility: hidden;" class="img-fluid" />
-
-
-     
-
     </section>
     <section>
 
-      <!-- miembros -->
          <!-- miembros -->
       <div class="row">
         <h2 style="display: inline-flex;">Miembros</h2>
