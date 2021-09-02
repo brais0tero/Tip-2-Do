@@ -29,7 +29,7 @@
 
 <body>
     <div class="container container-fluid">
-        <div class="middle row">
+        <div class="middle ">
             <div class="logo col-md">
                 <a href="./Index.php">
                     <svg  viewBox="0 0 180.12 106.21" viewBox="0 0 180.12 106.21" class=" mx-auto d-block">

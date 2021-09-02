@@ -1,7 +1,7 @@
 import "./jquery-3.6.0.min.js";
 
 $(document).ready(function () {
-   
+
     // Comprobar correo en Login
     $("#Logcorreo").blur(function () {
         let parente = $(this).parent();
@@ -83,7 +83,7 @@ $(document).ready(function () {
     })
 
     // Comprobar usuario
-    $("#Regnombre").blur(function(){
+    $("#Regnombre").blur(function () {
         let parente = $(this).parent();
         let contenido = $(this).val();
         if (contenido == "") {
@@ -100,7 +100,7 @@ $(document).ready(function () {
                     "CheckNombre": contenido
                 })
                 .done(respuesta => {
-                    correo = JSON.parse(respuesta);                
+                    correo = JSON.parse(respuesta);
                     if (correo === false) {
                         $("#errorNombre")
                             .css('display', 'inline-block')
@@ -167,63 +167,74 @@ $(document).ready(function () {
     });
 
     // comprobar contraseña
-    $("#Regclave").blur(function(){
+    $("#Regclave").blur(function () {
         let parente = $(this).parent();
-    
-        if(! /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,}$/.test($(this).val())){
-            $("#errorClave")
-            .css('display', 'inline-block')
-            .text("La contraseña no cumple los criterios");
 
-        parente.children().addClass("bg-danger");
-        }
-        else
-        {
+        if (!/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,}$/.test($(this).val())) {
             $("#errorClave")
-            .css('display', 'none')
-            .text("");
+                .css('display', 'inline-block')
+                .text("La contraseña no cumple los criterios");
 
-        parente.children().removeClass("bg-danger");
+            parente.children().addClass("bg-danger");
+        } else {
+            $("#errorClave")
+                .css('display', 'none')
+                .text("");
+
+            parente.children().removeClass("bg-danger");
         }
     })
 
     // comprobar contraseña duplicado
-    $("#RegclaveRep").blur(function(){
+    $("#RegclaveRep").blur(function () {
         let parente = $(this).parent();
-    
-        if($(this).val() != $("#Regclave").val()){
-            $("#errorClaveRep")
-            .css('display', 'inline-block')
-            .text("La contraseña no cumple los criterios");
 
-        parente.children().addClass("bg-danger");
-        }
-        else
-        {
+        if ($(this).val() != $("#Regclave").val()) {
             $("#errorClaveRep")
-            .css('display', 'none')
-            .text("");
+                .css('display', 'inline-block')
+                .text("La contraseña no cumple los criterios");
 
-        parente.children().removeClass("bg-danger");
+            parente.children().addClass("bg-danger");
+        } else {
+            $("#errorClaveRep")
+                .css('display', 'none')
+                .text("");
+            $_POST['cambiarFoto']
+
+            parente.children().removeClass("bg-danger");
         }
     })
 
     // enviar registro
-    $("#registro").submit(function (e) { 
+    $("#registro").submit(function (e) {
         e.preventDefault();
-        if($("input.bg-danger").length<=0){
+        if ($("input.bg-danger").length <= 0) {
             $.post("./backend/api.php", {
-                "registro": "",
-                "clave":$("#Regclave").val(),
-                "correo":$("#Regcorreo").val(),
-                "nombre":  $("#Regnombre").val()
-            })
-            .done(function(respuesta){
-                
-                window.location.replace("./login.php")
-            })
+                    "registro": "",
+                    "clave": $("#Regclave").val(),
+                    "correo": $("#Regcorreo").val(),
+                    "nombre": $("#Regnombre").val()
+                })
+                .done(function (respuesta) {
+                    console.log(respuesta)
+                })
 
         }
     });
 
+    $("#ajustes").click(function () {
+        $('#modificar').toggleClass('invisible');
+    })
+
+    $('#cambiarNombre').click(function () {
+        if($('#Regnombre').val()!=""){
+            $.post("./backend/api.php", {
+                'cambioNombre': $('#Regnombre').val()
+            }).done(function (respuesta) {
+                if (respuesta == 1) {
+                    location.reload
+                }
+            })
+        }
+    })
 });

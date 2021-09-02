@@ -1,0 +1,1 @@
+Para acceder a la base de datos tienes que utilizar tu cuenta root y en la hoja conexion bd, cambiar la contraseña por la tuya

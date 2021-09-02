@@ -1,7 +1,3 @@
-<!-- 
-Main page de serie
- -->
-
 <?php
 include "./backend/conexionBD.php";
 $db = dbConnect();
@@ -18,6 +14,13 @@ $db = dbConnect();
             $consulta = $db->query($query);
             $generos = $consulta->fetchAll();
            
+               //Obtener Miembros
+          $query = "SELECT CONCAT('./miembro.php?ID=', participante.id) as URL, participante.nombre as nombre, participante_multimedia.puesto as puesto, participante.imagen as IMG FROM participante
+          INNER JOIN participante_multimedia
+          ON participante_multimedia.ID_participante = participante.id where participante_multimedia.ID_multimedia =".$_GET['ID'];
+          $consulta = $db->query($query);
+          $miembros = $consulta->fetchAll();  
+
             // Obtener Trailers
             $query = "Select titulo as Titulo, url as URL FROM trailer WHERE ID_multimedia = ".$_GET['ID'];
             $consulta = $db->query($query);
@@ -35,20 +38,7 @@ $db = dbConnect();
             $consulta = $db->query($query);
             $franquicias = $consulta->fetchAll();
 
-            // Obtener Episodios
-            $query = "SELECT franquicia.nombre as Nombre, franquicia.abreviatura as Abreviatura FROM franquicia INNER JOIN franquicia_multimedia ON franquicia_multimedia.ID_franquicia = franquicia.id WHERE franquicia_multimedia.ID_multimedia = ".$_GET['ID'];
-            $consulta = $db->query($query);
-            $episodios = $consulta->fetchAll();
-
-               //Obtener Miembros
-          $query = "SELECT CONCAT('./miembro.php?ID=', participante.id) as URL, participante.nombre as nombre, participante_multimedia.puesto as puesto, participante.imagen as IMG FROM participante
-          INNER JOIN participante_multimedia
-          ON participante_multimedia.ID_multimedia = participante.id where participante_multimedia.ID_multimedia =".$_GET['ID'];
-          $consulta = $db->query($query);
-          $miembros = $consulta->fetchAll();
-
-            $db = null; 
-    
+         
 ?>
 <!doctype html>
 <html lang="es">
@@ -67,6 +57,10 @@ $db = dbConnect();
   <!-- custom css -->
   <link rel="stylesheet" href="./CSS/estilos.css">
   <script src="./JS/main.js" type="module"></script>
+
+  <script>
+    console.log(<?php var_dump($miembros) ?>)
+  </script>
 </head>
 
 <body class="d-flex">
@@ -76,11 +70,11 @@ $db = dbConnect();
   <!-- Mostrar Contenido pelicula -->
   <main class="container-fluid">
     <section class="row portada" <?php echo 'style="background-image: url('.$datos[0]["Imagen"].')"'?>>
-      <div class="col-md text-center">
+      <div class="col-md text-center portadaTexto">
         <h1><?php echo $datos[0]["Titulo"]?></h1>
         <p><?php echo $datos[0]["Sinopsis"] ?></p>
       </div>
-      <div class="col-md">
+      <div class="col-md portadaTexto">
         <table class="mx-auto table-condensed ">
           <tbody>
             <tr>
@@ -127,8 +121,14 @@ $db = dbConnect();
             </tr>
           </tbody>
         </table>
+        <?php if(isset($_COOKIE['PHPSESSID'])){
+        ?>
+        <button id="seguir" class="btn btn-success rounded-circle" value="<?php echo $_GET['ID']?>">
+        <i id="corazon" class="fa fa-heart"></i>
+        </button>
+       <?php }?>
       </div>
-      <img src=<?php echo $datos[0]["Imagen"].""?> style="visibility: hidden;" class="img-fluid" />
+
     </section>
     <section>
 
@@ -187,3 +187,5 @@ $db = dbConnect();
 </body>
 
 </html>
+
+<?php $db = null;?>

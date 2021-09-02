@@ -131,9 +131,8 @@ box-shadow: 0 50px 50x rgba(0,0,0,.5);
     }
 
 .portadaTexto{
- background-color: rgba(0, 0, 0, 0.459);  
- /* text-shadow: 0px 0px 17px rgba(150, 150, 150, 1); */
- background-color:rgba(0, 0, 0, 0.164);
+ background-color: rgba(0, 0, 0, 0.26);  
+ text-shadow: 0px 0px 17px rgb(0, 0, 0) !important;
 }
 
 .portada img{
@@ -233,3 +232,12 @@ table tbody td, table tfoot td {
     padding: 1%;
     text-align: center;
 }
+/* DataTable */
+.my-custom-scrollbar {
+  position: relative;
+  height: 200px;
+  overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+  display: block;
+  }

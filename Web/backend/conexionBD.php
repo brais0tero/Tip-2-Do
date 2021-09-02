@@ -1,7 +1,7 @@
 <?php
 function dbConnect (){
     $servidor = "127.0.0.1"; 
-    $base = "tip2doTest"; 
+    $base = "tip2do"; 
     $usuario = "root"; 
     $contrasenha = "toor"; // Cambialo por tu contraseña
     try {

@@ -22,7 +22,7 @@
         $passHas = password_hash($_POST["clave"], PASSWORD_DEFAULT);
 
 
-       insertarUsuario($_POST["nombre"],$_POST["correo"],  $passHas );
+       echo insertarUsuario($_POST["nombre"],$_POST["correo"],  $passHas );
 
     }
 
@@ -38,7 +38,7 @@
     
        $buscado = $_POST['busqueda'];
         $datos = array();
-        $datos = array_merge(buscarMiembro($buscado), buscarMultimedia($buscado));
+        $datos = buscarMultimedia($buscado);
         shuffle($datos);
         echo(json_encode($datos));
     }
@@ -55,33 +55,126 @@
         echo json_encode((buscarUsuario($_POST["CheckNombre"])["nombre"] == "")?TRUE:FALSE);
     }
 
-    if(isset($_POST["agregarPelicula"])){
+    // Obtener informacio Miembro
+if(isset($_POST["obtenerMiembros"]))
+    {
+        echo json_encode(obtenerMiembros());
+    }
+    // Obtener Informacion Multimedia
+        if(isset($_POST["obtenerPeliculas"])){
+            echo json_encode(obtenerMultimediaPelicula());
+        }
+        if(isset($_POST["obtenerSeries"])){
+            echo json_encode( obtenerMultimediaSerie());
+        }
+    // Obtener Informacion Usuario
+
+// Agregar Pelicula Automaticamente
+    if(isset($_POST["agregarPeliculaA"])){
         
-        echo insertarMultimedia($_POST["agregarPelicula"]["id"],$_POST["agregarPelicula"]['title'],$_POST["agregarPelicula"]['overview'],'https://image.tmdb.org/t/p/original'.$_POST["agregarPelicula"]['backdrop_path'],'https://image.tmdb.org/t/p/original'.$_POST["agregarPelicula"]['poster_path'],date($_POST["agregarPelicula"]['release_date']),'Pelicula');
+        echo insertarMultimedia('Pelicula',$_POST["agregarPelicula"]['title'],$_POST["agregarPelicula"]['overview'],'https://image.tmdb.org/t/p/original'.$_POST["agregarPelicula"]['backdrop_path'],'https://image.tmdb.org/t/p/original'.$_POST["agregarPelicula"]['poster_path'],date($_POST["agregarPelicula"]['release_date']),$_POST["agregarPelicula"]["id"]);
 
         echo insertarPelicula($_POST["agregarPelicula"]["id"], intval($_POST["agregarPelicula"]["runtime"]));
     
-        echo insertarGenero($_POST["agregarPelicula"]["genres"]);
+        echo insertarGeneros($_POST["agregarPelicula"]["genres"]);
 
         echo insertarGenero_multimedia($_POST['agregarPelicula']['id'],$_POST["agregarPelicula"]["genres"]);
 
-        echo insertarParticipante($_POST['miembro']);
+        echo insertarParticipantes($_POST['miembro']);
          echo insertarParticipanteMultimedia($_POST['miembro'],$_POST['agregarPelicula']['id']);
     }
 
+// Agregar serie Automaticamente
+    if(isset($_POST["agregarSerieA"])){   
+        echo insertarMultimedia('Serie',$_POST["agregarSerie"]['name'],$_POST["agregarSerie"]['overview'],'https://image.tmdb.org/t/p/500w'.$_POST["agregarSerie"]['backdrop_path'],'https://image.tmdb.org/t/p/original'.$_POST["agregarSerie"]['poster_path'],date($_POST["agregarSerie"]['release_date']),$_POST["agregarSerie"]["id"]);
 
-    if(isset($_POST["agregarSerie"])){  
-        var_dump($_POST['miembro']); 
-        // echo insertarMultimedia($_POST["agregarSerie"]["id"],$_POST["agregarSerie"]['title'],$_POST["agregarSerie"]['overview'],'https://image.tmdb.org/t/p/500w'.$_POST["agregarSerie"]['backdrop_path'],'https://image.tmdb.org/t/p/500w'.$_POST["agregarSerie"]['poster_path'],date($_POST["agregarSerie"]['release_date']),'Pelicula');
-
-        // echo insertarSerie($_POST["agregarSerie"]["id"], intval($_POST["agregarSerie"]["seasons"]));
+        echo insertarSerie($_POST["agregarSerie"]["id"], intval($_POST["agregarSerie"]["number_of_seasons"]));
     
-        // echo insertarGenero($_POST["agregarSerie"]["genres"]);
+        echo insertarGeneros($_POST["agregarSerie"]["genres"]);
 
-        // echo insertarGenero_multimedia($_POST['agregarSerie']['id'],$_POST["agregarSerie"]["genres"]);
+        echo insertarGenero_multimedia($_POST['agregarSerie']['id'],$_POST["agregarSerie"]["genres"]);
 
-        // echo insertarParticipante($_POST['miembro']);
-        //  echo insertarParticipanteMultimedia($_POST['miembro'],$_POST['agregarSerie']['id']);
+        echo insertarParticipantes($_POST['miembro']);
+         echo insertarParticipanteMultimedia($_POST['miembro'],$_POST['agregarSerie']['id']);
     }
-   
+//    Seguir multimedia
+    if(isset($_POST["seguir"]))
+    {
+        session_start();
+      echo insertarSeguir($_POST["seguir"], $_SESSION['id']);
+    }
+
+// agregar Miembro
+    if(isset($_POST['agregarActor'])){echo 'ª';}
+
+
+// Agregar Genero
+if (isset($_POST['agregargenero'])) {
+    echo insertarGenero($_POST["agregargenero"]['nombre']);
+}
+// Agregar Serie
+
+// Agregar Pelicula
+
+// Agregar Trailer
+
+// Agregar Usuario
+
+// Agregar Plataforma
+
+// Unir Franquicia
+
+// Unir Genero
+
+// Unir miembro
+
+// Unir plataforma
+
+// Eliminar Genero
+
+// Eliminar Serie
+
+// Eliminar Pelicula
+
+// Eliminar Trailer
+
+// Eliminar Usuario
+
+// Eliminar Plataforma
+
+// Eliminar Miembro
+
+// Modificar Miembro
+if (isset($_POST["actualizarMiembroA"])) {
+    if($_POST["actualizarMiembroA"]['birthday'] == ""){
+        $fecha = NULL;  
+    }else{
+        $fecha = date($_POST["actualizarMiembroA"]['birthday']);
+    }
+
+  echo actualizarMiembro(intval($_POST["actualizarMiembroA"]['id']),$_POST["actualizarMiembroA"]['name'],$fecha,$_POST["actualizarMiembroA"]['biography'],"https://image.tmdb.org/t/p/original".$_POST["actualizarMiembroA"]['profile_path']);
+}
+// Modificar Genero
+// Modificar Serie
+
+// Modificar Pelicula
+
+// Modificar Trailer
+
+// Modficar Usuario
+
+// Modificar Plataforma
+
+// Modificar Franquicia
+
+// Modificar Genero
+
+// Modificar Nombre Usurio
+if(isset($_POST['cambioNombre'])){
+    session_start();
+    $id = $_SESSION['id'];
+    $_SESSION['nombre'] = $_POST['cambioNombre'];
+    echo actualizarUsuarioNombre($id,$_POST['cambioNombre']);
+}
+
 ?>
